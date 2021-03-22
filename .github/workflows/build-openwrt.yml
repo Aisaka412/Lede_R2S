@@ -108,10 +108,7 @@ jobs:
         echo "artifact=${GITHUB_WORKSPACE}/openwrt/bin/Firmware" >> $GITHUB_ENV
     
     
-    - name: 公告
-      run: |
-        cd openwrt
-        source "${PATH1}/common.sh" && Diy_notice
+  
 
     - name: 加载源,patch补丁和自定义设置
       run: |
@@ -159,7 +156,7 @@ jobs:
         fi
     
     - name: SSH远程连接（若打开了此功能,在此转圈2分钟还展开不了,请看《SSH连接教程》）
-      uses: 281677160/debugger-action@master
+      uses: czw1259/debugger-action@master
       if: env.SSH_ACTIONS == 'true' || (github.event.inputs.ssh == 'ssh' && github.event.inputs.ssh  != 'false')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
